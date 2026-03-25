@@ -1,1 +1,1 @@
-hi
+clear, clc, close all;
