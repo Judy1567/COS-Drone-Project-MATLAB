@@ -1,0 +1,1 @@
+% CA update: spread → decay → clamp
