@@ -3,12 +3,10 @@ function target = find_target(drone, fire)
 threshold = 0.05; % tune this if you need Owen
 [rList, cList] = find(fire.intensity > threshold);
 if isempty(rList)
-    % wander randomly instead of freezing
-    dirs = [1 0; -1 0; 0 1; 0 -1];
-    idx = randi(4);
-    target = drone.position + dirs(idx,:);
+    target = drone.position;
     return;
 end
+
 distances = abs(rList - drone.position(1)) + abs(cList - drone.position(2));
 [~, idx] = min(distances);
 
