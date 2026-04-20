@@ -1,17 +1,20 @@
-%goal is to read drone data and reuturn a table with basic info
+% my goal is to summarize results as shown in code pdf, i will make summary
+% table using struct2table and auto save a CSV and a .MAT file with the
+% data
 function results = summarize_results(drones, fire, params)
 
-    n = length(drones); % use lenght drones to find amount
+    n = length(drones); % use length drones to find amount
 
-    cells_extinguished = zeros(n,1); %data storage in array
-    distance_traveled = zeros(n,1);
-
-    for i = 1:n %needs to go drone by drone
-        cells_extinguished(i) = drones(i).extinguishedCells;
-        distance_traveled(i) = drones(i).distanceTraveled;
+    for i = 1:n
+        s(i).DroneID           = drones(i).id;
+        s(i).CellsExtinguished = drones(i).extinguishedCells;
+        s(i).DistanceTraveled  = drones(i).distanceTraveled;
     end
 
-    results = table((1:n)', cells_extinguished, distance_traveled, ...
-        'VariableNames', {'DroneID','CellsExtinguished','DistanceTraveled'});
-%use variable names to assign coll names to table
+    results = struct2table(s); %struct2table converts the struct array into a readtable
+    disp(results); %this will print it to hte console
+
+    writetable(results, 'drone_summary.csv'); %writes to a csv
+    save('simulation_data.mat', 'fire', 'drones', 'params');%saves to .MAT
+
 end
