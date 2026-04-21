@@ -4,6 +4,7 @@ drones = struct([]);
 
 for i = 1:params.numDrones
     drones(i).id = i;
+    drones(i).isSpraying = false;%for water drawing 
 
     placed = false;
 
