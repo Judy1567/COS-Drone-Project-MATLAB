@@ -3,7 +3,6 @@
 % data
 function results = summarize_results(drones, fire, params)
 
-    n = length(drones); % use lenght drones to find amount
     n = length(drones); % use length drones to find amount
 
     for i = 1:n
