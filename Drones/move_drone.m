@@ -49,13 +49,40 @@ if occupied
         end
     end
 
-    if ~occupied2
-        newPos = alt;
-    else
-        newPos = pos; % stay put if both blocked
-    end
+   % 3‑line sidestep fallback
+left  = [pos(1), pos(2)-1];
+right = [pos(1), pos(2)+1];
+
+if ~occupied2
+    newPos = alt;
+elseif isValid(left, params, drones)
+    newPos = left;
+elseif isValid(right, params, drones)
+    newPos = right;
+else
+    newPos = pos; % stay put
+end
+%newwwww
 else
     newPos = proposed;
 end
 
+end
+
+%neww
+function ok = isValid(pos, params, drones)
+    % inside grid?
+    if pos(1) < 1 || pos(1) > params.gridSize || pos(2) < 1 || pos(2) > params.gridSize
+        ok = false;
+        return
+    end
+
+    % not occupied?
+    ok = true;
+    for k = 1:length(drones)
+        if isequal(drones(k).position, pos)
+            ok = false;
+            return
+        end
+    end
 end
