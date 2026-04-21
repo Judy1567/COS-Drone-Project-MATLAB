@@ -5,6 +5,7 @@ drones = struct([]);
 for i = 1:params.numDrones
     drones(i).id = i;
     drones(i).isSpraying = false;%for water drawing 
+    drones(i).dropWaterCooldown = 0; %defines cooldown field
 
     placed = false;
 
