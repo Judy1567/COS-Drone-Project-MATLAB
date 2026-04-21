@@ -12,7 +12,7 @@ function results = summarize_results(drones, fire, params)
     end
 
     results = struct2table(s); %struct2table converts the struct array into a readtable
-    disp(results); %this will print it to hte console
+    disp(results); %this will print it to the console
 
     writetable(results, 'drone_summary.csv'); %writes to a csv
     save('simulation_data.mat', 'fire', 'drones', 'params');%saves to .MAT
