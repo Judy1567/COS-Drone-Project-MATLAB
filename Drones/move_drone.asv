@@ -48,10 +48,9 @@ if occupied
             break;
         end
     end
-    %sidestep fallback
     left  = [pos(1), pos(2)-1];
     right = [pos(1), pos(2)+1];
-%If new move is free, use it, else, use other direction
+
     if ~occupied2
         newPos = alt;
     elseif isValid(left, params, drones)
@@ -59,14 +58,14 @@ if occupied
     elseif isValid(right, params, drones)
         newPos = right;
     else
-        newPos = pos; % stays put due to not other valid moves
+        newPos = pos; % stay put
     end
     else
-        newPos = proposed;%takes the new move
+        newPos = proposed;
 end
 
 end
-function ok = isValid(pos, params, drones)%checks that position is in grid and free
+function ok = isValid(pos, params, drones)
     if pos(1) < 1 || pos(1) > params.gridSize || pos(2) < 1 || pos(2) > params.gridSize
         ok = false;
         return
