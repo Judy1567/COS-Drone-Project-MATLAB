@@ -24,7 +24,9 @@ for i = 1:length(drones)
     end
 
 % 4.
-    [drones(i), fire] = drop_water(drones(i), fire);
+    %[drones(i), fire] = drop_water(drones(i), fire);
+    [drones(i), fire] = drop_water(drones(i), fire, params);
+
 
 % 5.
     drones(i).log = [drones(i).log; newPos];

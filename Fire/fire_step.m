@@ -1,0 +1,36 @@
+function fire = fire_step(fire, params)
+%the non-extra credit version
+%Goal:
+%copy grid, loop through all cells
+%if cell burns, then fire spreads (spreadRate)
+%subtract decay, clamp, reutrn updated fire struct
+    newGrid = fire.intensity;
+        for r = 1:params.gridSize
+            for c = 1:params.gridSize
+                if fire.intensity(r,c) >= 0.8%this used to be >0
+                    %North side
+                    if r>1
+                        newGrid(r-1, c) = newGrid(r-1, c) + params.spreadRate;
+                    end
+                    %South side
+                    if r<params.gridSize
+                        newGrid(r+1, c) = newGrid(r+1, c) + params.spreadRate;
+                    end
+                    %West Side
+                    if c>1
+                        newGrid(r, c-1) = newGrid(r, c-1) + params.spreadRate;
+                    end
+                    %East side
+                    if c < params.gridSize
+                        newGrid(r, c+1) = newGrid(r, c+1) + params.spreadRate;
+                    end
+                end
+            end
+        end
+         %Decay part
+    newGrid = newGrid - params.decayRate;
+        %clamp part
+    newGrid = clampHelper(newGrid);
+        %updates grid
+    fire.intensity = newGrid;
+end

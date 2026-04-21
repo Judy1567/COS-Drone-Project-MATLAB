@@ -7,7 +7,7 @@ function fire = fire_step(fire, params)
     newGrid = fire.intensity;
         for r = 1:params.gridSize
             for c = 1:params.gridSize
-                if fire.intensity(r,c) > 0
+                if fire.intensity(r,c) ==1
                     %North side
                     if r>1
                         newGrid(r-1, c) = newGrid(r-1, c) + params.spreadRate;
