@@ -18,7 +18,7 @@ params.stopThreshold = 0.1;
 params.droneSpeed = 5;
 params.numDrones = 10;
 params.dropRadius = 1;
-params.dropWaterCooldown = 2;%drone has to wait 3 timesteps
+params.dropWaterCooldown = 2;%drone has to wait 2 timesteps
 %plot
 params.plotStep = 1;
 end
